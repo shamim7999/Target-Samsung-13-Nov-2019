@@ -16,26 +16,26 @@ int dp[(1LL<<12)+12][12];
 int func(int mask, int pos)
 {
    if(mask == (1LL<<n)-1)
-      return abs(a1-a[pos].first) + abs(b1 - a[pos].second);
+      return abs(a2-a[pos].first) + abs(b2 - a[pos].second);
    int &ret = dp[mask][pos];
    if(ret!=-1)
       return ret;
-   int a1 = 1000000000;
+   int a11 = 1000000000;
    for(int i=0; i<n; i++){
       int x = 0;
       int ok = (mask & (1LL<<i));
       if(!ok){
          if(mask == 0){
-            x = abs(a2 - a[i].first) + abs(b2 - a[i].second);
-            a1 = min(a1, x+func( (mask | (1LL<<i)) , i  ));
+            x = abs(a1 - a[i].first) + abs(b1 - a[i].second);
+            a11 = min(a11, x+func( (mask | (1LL<<i)) , i  ));
          }
          else{
             x = abs(a[pos].first - a[i].first) + abs(a[pos].second - a[i].second);
-            a1 = min(a1, x+func( (mask | (1LL<<i)) , i  ));
+            a11 = min(a11, x+func( (mask | (1LL<<i)) , i  ));
          }
       }
    }
-   return ret = a1;
+   return ret = a11;
 }
 
 void solve(int kk)
